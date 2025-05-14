@@ -9,11 +9,11 @@
     "timepicker",
     "time picker"
   ],
-  "author": "daniel pan <myron.yk.pan@gmail.com>",
+  "author": "Alloy",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanielYKPan/date-time-picker.git"
+    "url": "https://github.com/alloyit/date-time-picker.git"
   },
   "peerDependencies": {
     "@angular/common": "^7.0.0",
