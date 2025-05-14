@@ -63,6 +63,9 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
 
     private inputStreamSub = Subscription.EMPTY;
 
+    // Variabile per memorizzare l'ultimo valore inserito
+    private lastInputValue: string;
+
     get displayValue(): number {
         return this.boxValue || this.value;
     }
@@ -76,9 +79,9 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
 
     public ngOnInit() {
         this.inputStreamSub = this.inputStream.pipe(
-            debounceTime(7500),
+            debounceTime(1500),
             distinctUntilChanged()
-        ).subscribe(( val: string ) => {
+        ).subscribe((val: string) => {
             if (val) {
                 const inputValue = coerceNumberProperty(val, 0);
                 this.updateValueViaInput(inputValue);
@@ -98,18 +101,35 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
         this.updateValue(this.value - this.step);
     }
 
-    public handleInputChange( val: string ): void {
+    public handleInputChange(val: string): void {
+        this.lastInputValue = val;
+        console.log("handleInputChange lastValue", this.lastInputValue);
         this.inputStream.next(val);
     }
 
-    private updateValue( value: number ): void {
+    /**
+     * Metodo per confermare immediatamente il valore inserito
+     * Da chiamare su blur del campo input o su pressione del tasto invio
+     */
+    public confirmInput(): void {
+        if (this.lastInputValue) {
+            const inputValue = coerceNumberProperty(this.lastInputValue, 0);
+            console.log("confirmInput inputValue", inputValue);
+            this.updateValueViaInput(inputValue);
+            // Annulla il debounce in corso
+            this.inputStream.next(null);
+        }
+    }
+
+    private updateValue(value: number): void {
         this.valueChange.emit(value);
     }
 
-    private updateValueViaInput( value: number ): void {
+    private updateValueViaInput(value: number): void {
         if (value > this.max || value < this.min) {
             return;
         }
+        console.log("updateValueViaInput value", value);
         this.inputChange.emit(value);
     }
 }
