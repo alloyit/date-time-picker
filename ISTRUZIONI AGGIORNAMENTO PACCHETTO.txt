@@ -1,0 +1,18 @@
+Richiede aver fatto login con alloyit in npmjs.com
+Con node 16+
+==================================================
+npm i -g npm@6.9.0
+sudo n
+   scegliere 10.16
+
+npm run package
+
+npm i -g npm@9.2.0
+sudo n
+   scegliere 16+
+
+git commit
+git push
+npm version patch
+git push
+npm publish
