@@ -225,7 +225,6 @@ export class OwlTimerComponent<T> implements OnInit {
     }
 
     public setMinuteValue(minutes: number): void {
-        console.log("setMinuteValue minutes", minutes);
         const m = this.dateTimeAdapter.setMinutes(this.pickerMoment, minutes);
         this.selectedChange.emit(m);
         this.cdRef.markForCheck();

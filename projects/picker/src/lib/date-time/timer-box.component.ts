@@ -103,7 +103,6 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
 
     public handleInputChange(val: string): void {
         this.lastInputValue = val;
-        console.log("handleInputChange lastValue", this.lastInputValue);
         this.inputStream.next(val);
     }
 
@@ -114,7 +113,6 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
     public confirmInput(): void {
         if (this.lastInputValue) {
             const inputValue = coerceNumberProperty(this.lastInputValue, 0);
-            console.log("confirmInput inputValue", inputValue);
             this.updateValueViaInput(inputValue);
             // Annulla il debounce in corso
             this.inputStream.next(null);
@@ -129,7 +127,6 @@ export class OwlTimerBoxComponent implements OnInit, OnDestroy {
         if (value > this.max || value < this.min) {
             return;
         }
-        console.log("updateValueViaInput value", value);
         this.inputChange.emit(value);
     }
 }
