@@ -13,3 +13,9 @@ export {
 export { OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from './lib/date-time/adapter/date-time-format.class';
 export { OwlDateTimeInlineComponent } from './lib/date-time/date-time-inline.component';
 export { OwlDateTimeComponent } from './lib/date-time/date-time-picker.component';
+export {
+  OwlMomentDateTimeModule,
+  MomentDateTimeModule
+} from './lib/date-time/adapter/moment-adapter/moment-date-time.module';
+export { OWL_MOMENT_DATE_TIME_FORMATS } from './lib/date-time/adapter/moment-adapter/moment-date-time-format.class';
+export { MomentDateTimeAdapter, OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS } from './lib/date-time/adapter/moment-adapter/moment-date-time-adapter.class';
